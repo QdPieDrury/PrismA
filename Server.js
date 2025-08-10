@@ -57,7 +57,7 @@ app.get("/", (req, res) => {
   if (req.accepts('html')) {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
   } else {
-    res.json({ message: "Welcome to the API. Use the /create-ws endpoint to begin." });
+    res.json({ message: "Welcome to prismA fetch one of our API's to get started!" });
   }
 });
 
