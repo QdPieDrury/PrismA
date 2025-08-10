@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrismA API Documentation</title>
+  <link rel="icon" type="image/png" href="https://res.cloudinary.com/dk7iepubl/image/upload/v1754792538/PrismA_ylujqj.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800 p-8 flex flex-col items-center">
+  
+  <div class="max-w-4xl w-full bg-white rounded-lg shadow-xl p-8">
+
+    <header class="flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
+      <div class="flex items-center space-x-4">
+        <img src="https://res.cloudinary.com/dk7iepubl/image/upload/v1754792538/PrismA_ylujqj.png" alt="PrismA logo" class="h-10">
+        <h1 class="text-4xl font-extrabold text-black tracking-tight">PrismA API's</h1>
+      </div>
+      <a href="/" class="text-black hover:text-gray-800 font-medium transition duration-200">← Back to Home</a>
+    </header>
+
+    <section class="mb-8">
+      <p class="text-lg text-gray-600">
+        Welcome to the PrismA API documentation. Our service provides a simple way to create and manage temporary WebSocket rooms for your applications. All API responses are in JSON format.
+      </p>
+    </section>
+
+    <h2 class="text-3xl font-bold mb-6 text-gray-700 border-b-2 border-black pb-2">Endpoints</h2>
+
+    <div class="mb-8 p-6 bg-gray-50 rounded-[2.5px]">
+      <div class="flex items-center space-x-3 mb-2">
+        <span class="bg-green-500 text-white font-bold px-3 py-1 rounded-[2.5px] text-sm">GET</span>
+        <code class="text-lg font-mono text-gray-700">/create-ws</code>
+      </div>
+      <p class="text-gray-700 mb-4">
+        Creates a new, unique WebSocket room. This is the first step to establishing a real-time connection. The room will automatically expire after 20 minutes of inactivity.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-2">Response</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>{
+  "success": true,
+  "wsUrl": "wss://app.com/a42b1c7d-e8f9-4021-a123-b45678c90123",
+  "id": "a42b1c7d-e8f9-4021-a123-b45678c90123",
+  "disclaimer": "Keep this ID safe..."
+}
+</code></pre>
+      
+      <h3 class="text-xl font-semibold mt-4 mb-2">Example with JavaScript</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>fetch('http://localhost:3000/create-ws')
+  .then(response => response.json())
+  .then(data => console.log(data));
+</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Example with Python</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>import requests
+
+response = requests.get('http://localhost:3000/create-ws')
+print(response.json())
+</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Example with Ruby</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>require 'net/http'
+require 'json'
+
+uri = URI('http://localhost:3000/create-ws')
+response = Net::HTTP.get(uri)
+puts JSON.parse(response)
+</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Example with cURL</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>curl http://localhost:3000/create-ws</code></pre>
+    </div>
+
+    <div class="p-6 bg-gray-50 rounded-[2.5px]">
+      <div class="flex items-center space-x-3 mb-2">
+        <span class="bg-red-500 text-white font-bold px-3 py-1 rounded-[2.5px] text-sm">POST</span>
+        <code class="text-lg font-mono text-gray-700">/close-ws/:id</code>
+      </div>
+      <p class="text-gray-700 mb-4">
+        Manually closes a specific WebSocket room and all its active connections. You must provide the room's unique ID in the URL.
+      </p>
+
+      <h3 class="text-xl font-semibold mb-2">Response</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>{
+  "success": true,
+  "message": "Room a42b1c7d-e8f9-4021-a123-b45678c90123 closed"
+}
+</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Example with JavaScript</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>const roomId = 'a42b1c7d-e8f9-4021-a123-b45678c90123';
+fetch(`http://localhost:3000/close-ws/${roomId}`, {
+  method: 'POST'
+})
+.then(response => response.json())
+.then(data => console.log(data));
+</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Example with Python</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>import requests
+
+room_id = 'a42b1c7d-e8f9-4021-a123-b45678c90123'
+url = f'http://localhost:3000/close-ws/{room_id}'
+response = requests.post(url)
+print(response.json())
+</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Example with Ruby</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>require 'net/http'
+require 'uri'
+require 'json'
+
+room_id = 'a42b1c7d-e8f9-4021-a123-b45678c90123'
+uri = URI("http://localhost:3000/close-ws/#{room_id}")
+http = Net::HTTP.new(uri.host, uri.port)
+request = Net::HTTP::Post.new(uri.path)
+response = http.request(request)
+puts JSON.parse(response.body)
+</code></pre>
+
+      <h3 class="text-xl font-semibold mt-4 mb-2">Example with cURL</h3>
+      <pre class="bg-gray-800 text-white p-4 rounded-[2.5px] overflow-x-auto text-sm">
+<code>curl -X POST http://localhost:3000/close-ws/a42b1c7d-e8f9-4021-a123-b45678c90123</code></pre>
+    </div>
+
+    <footer class="mt-8 pt-4 border-t border-gray-200 text-center text-gray-500 text-sm">
+      <p>&copy; 2025 PrismA. All rights reserved.</p>
+    </footer>
+    
+  </div>
+</body>
+</html>
