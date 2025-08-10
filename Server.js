@@ -2,12 +2,18 @@ const express = require("express");
 const http = require("http");
 const WebSocket = require("ws");
 const crypto = require("crypto");
+const path = require("path");
+const cors = require("cors");
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ noServer: true });
 const rooms = new Map();
 const EXPIRY_TIME = 20 * 60 * 1000;
+
+app.use(cors());
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 function resetExpiry(roomId) {
   const room = rooms.get(roomId);
@@ -47,7 +53,20 @@ wss.on("connection", (ws, request, roomId) => {
   });
 });
 
+app.get("/", (req, res) => {
+  if (req.accepts('html')) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  } else {
+    res.json({ message: "Welcome to the API. Use the /create-ws endpoint to begin." });
+  }
+});
+
 app.get("/create-ws", (req, res) => {
+  if (req.accepts('html')) {
+    res.redirect('/');
+    return;
+  }
+  
   const roomId = crypto.randomUUID();
   rooms.set(roomId, { clients: [], timeout: null });
   resetExpiry(roomId);
@@ -86,4 +105,6 @@ server.on("upgrade", (request, socket, head) => {
   });
 });
 
-server.listen(3000);
+server.listen(3000, () => {
+  console.log('Server listening on http://localhost:3000');
+});
