@@ -11,19 +11,28 @@
       top: 1rem;
       right: 1rem;
     }
-    .h1 {
-      font-size: 30px;
+    .heading-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px; /* Adds space between the h1 and the image */
+    }
+    .logo {
+      height: 30px; /* Adjust the height of the image to match the h1 font size */
     }
   </style>
 </head>
 <body>
-  <h1 class="h1" >Prism</h1><image class="h1" href="https://res.cloudinary.com/dk7iepubl/image/upload/v1754792538/PrismA_ylujqj.png" ></image>
+  <div class="heading-container">
+    <h1>Prism</h1>
+    <img class="logo" src="https://res.cloudinary.com/dk7iepubl/image/upload/v1754792538/PrismA_ylujqj.png" alt="PrismA logo">
+  </div>
   <hr>
-  <p>PrismA is a software that provides Api's for frontend developers or backend developers to make their job easier.</p>
-  <p>PrismA provides Api's for tasks such as making a websocket.</p>
+  <p>PrismA is a software that provides APIs for frontend developers or backend developers to make their job easier.</p>
+  <p>PrismA provides APIs for tasks such as making a websocket.</p>
   <a class="top-right" href="/Api.html">
     <button>
-      Api's
+      APIs
     </button>
   </a>
 </body>
