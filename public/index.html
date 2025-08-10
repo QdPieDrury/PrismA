@@ -6,23 +6,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PrismA</title>
   <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f2f5;
+      color: #333;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* Aligns content to the top instead of the center */
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
     .top-right {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
+      top: 1.5rem;
+      right: 1.5rem;
     }
     .heading-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px; /* Adds space between the h1 and the image */
+      gap: 15px;
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #383838;
+      margin: 0;
     }
     .logo {
-      height: 30px; /* Adjust the height of the image to match the h1 font size */
+      height: 3rem;
+    }
+    hr {
+      border: 0;
+      height: 1px;
+      background-color: #e0e0e0;
+      margin: 1rem 0;
+      width: 100%;
+      max-width: 600px;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      text-align: center;
+      max-width: 600px; /* Constrains the width of the paragraphs */
+    }
+    .button {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background-color: Black;
+      border: none;
+      border-radius: 2.5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .button:hover {
+      background-color: grey;
     }
   </style>
 </head>
 <body>
+  <a class="top-right" href="/Api.html">
+    <button class="button">
+      APIs
+    </button>
+  </a>
+
   <div class="heading-container">
     <h1>Prism</h1>
     <img class="logo" src="https://res.cloudinary.com/dk7iepubl/image/upload/v1754792538/PrismA_ylujqj.png" alt="PrismA logo">
@@ -30,10 +86,5 @@
   <hr>
   <p>PrismA is a software that provides APIs for frontend developers or backend developers to make their job easier.</p>
   <p>PrismA provides APIs for tasks such as making a websocket.</p>
-  <a class="top-right" href="/Api.html">
-    <button>
-      APIs
-    </button>
-  </a>
 </body>
 </html>
